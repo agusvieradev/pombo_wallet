@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PomboAppbar extends ConsumerWidget {
-  const PomboAppbar({super.key});
+class PomboAppBar extends AppBar {
+  PomboAppBar({
+    required this.appBarTitle,
+    this.drawer,
+    this.avatarImage,
+    this.actionWidgets,
+    super.key,
+  }) : super(
+          title: Text(
+            appBarTitle,
+          ),
+          actions: actionWidgets,
+          elevation: 3,
+          automaticallyImplyLeading: true,
+        );
 
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Container();
-  }
+  final String appBarTitle;
+  final Widget? drawer;
+  final ImageProvider? avatarImage;
+  final List<Widget>? actionWidgets;
 }
