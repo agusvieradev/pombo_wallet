@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pombo_wallet/app/global/constants/pombo_colors.dart';
 
 class AuthFormContainer extends ConsumerWidget {
   const AuthFormContainer({super.key});
@@ -18,7 +19,7 @@ class AuthFormContainer extends ConsumerWidget {
           elevation: 4.0,
           child: Container(
             decoration: const BoxDecoration(
-              color: Colors.white,
+              color: PomboColors.pomboWhite,
               borderRadius: BorderRadius.all(
                 Radius.circular(12),
               ),
@@ -37,7 +38,7 @@ class AuthFormContainer extends ConsumerWidget {
                       'Bienvenido a Pombo',
                       style: TextStyle(
                         fontFamily: 'Comfortaa',
-                        color: Color.fromARGB(255, 43, 43, 43),
+                        color: PomboColors.pomboPrimaryText,
                         fontWeight: FontWeight.bold,
                         fontSize: 36.0,
                       ),
@@ -49,7 +50,7 @@ class AuthFormContainer extends ConsumerWidget {
                       'Iniciá sesión con tu correo y contraseña',
                       style: TextStyle(
                         fontFamily: 'Comfortaa',
-                        color: Color.fromARGB(255, 163, 163, 163),
+                        color: PomboColors.pomboSecondaryText,
                         fontWeight: FontWeight.bold,
                         fontSize: 20.0,
                       ),
@@ -80,6 +81,7 @@ class AuthFormContainer extends ConsumerWidget {
                         controller: passwordController,
                         style: const TextStyle(
                           fontFamily: 'Comfortaa',
+                          color: PomboColors.pomboPrimaryText,
                           fontSize: 22,
                         ),
                         decoration: const InputDecoration(
@@ -87,6 +89,7 @@ class AuthFormContainer extends ConsumerWidget {
                             'Contraseña',
                             style: TextStyle(
                               fontFamily: 'Comfortaa',
+                              color: PomboColors.pomboPrimaryText,
                               fontSize: 22,
                             ),
                           ),
@@ -105,7 +108,7 @@ class AuthFormContainer extends ConsumerWidget {
                           '¿Olvidaste tu contraseña?',
                           style: TextStyle(
                             fontFamily: 'Comfortaa',
-                            color: Color.fromARGB(255, 20, 149, 255),
+                            color: PomboColors.pomboBlue,
                             fontSize: 18,
                           ),
                         ),
@@ -113,12 +116,11 @@ class AuthFormContainer extends ConsumerWidget {
                     ),
                     const SizedBox(height: 15),
                     SizedBox(
-                      width:
-                          double.infinity, // Ocupa todo el ancho del contenedor
+                      width: double.infinity,
                       child: ElevatedButton(
                         style: const ButtonStyle(
                           backgroundColor: MaterialStatePropertyAll(
-                            Color.fromARGB(255, 20, 149, 255),
+                            PomboColors.pomboBlue,
                           ),
                         ),
                         onPressed: () {},
@@ -129,7 +131,7 @@ class AuthFormContainer extends ConsumerWidget {
                             style: TextStyle(
                               fontFamily: 'Comfortaa',
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: PomboColors.pomboWhite,
                               fontSize: 18,
                             ),
                           ),
@@ -144,7 +146,7 @@ class AuthFormContainer extends ConsumerWidget {
                           '¿No tenes cuenta?',
                           style: TextStyle(
                             fontFamily: 'Comfortaa',
-                            color: Color.fromARGB(255, 43, 43, 43),
+                            color: PomboColors.pomboPrimaryText,
                             fontSize: 20,
                           ),
                         ),
@@ -155,7 +157,7 @@ class AuthFormContainer extends ConsumerWidget {
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Comfortaa',
-                              color: Color.fromARGB(255, 20, 149, 255),
+                              color: PomboColors.pomboBlue,
                               fontSize: 20,
                             ),
                           ),
