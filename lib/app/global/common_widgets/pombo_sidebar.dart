@@ -16,7 +16,7 @@ class PomboSideBar extends ConsumerWidget {
     return Material(
       elevation: 10.0,
       child: Container(
-        width: 350,
+        width: 300,
         color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
