@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pombo_wallet/app/features/authentication/presentation/auth_form.dart';
+import 'package:pombo_wallet/app/features/authentication/presentation/auth_form_container.dart';
 import 'package:pombo_wallet/app/global/common_widgets/pombo_information.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_colors.dart';
 

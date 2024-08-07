@@ -1,11 +1,11 @@
 name: pombo_wallet
 description: Global wallet.
 
-publish_to: 'none'
+publish_to: "none"
 version: 1.0.0
 
 environment:
-  sdk: '>=3.1.0 <4.0.0'
+  sdk: ">=3.1.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -25,7 +25,6 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
-
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
@@ -39,11 +38,18 @@ flutter:
   # example:
   fonts:
     - family: Kiona
-      fonts: 
+      fonts:
         - asset: assets/fonts/Kiona-Regular.ttf
     - family: Comfortaa
       fonts:
-        - asset:  assets/fonts/Comfortaa-VariableFont_wght.ttf
+        - asset: assets/fonts/Comfortaa-VariableFont_wght.ttf
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Light.ttf
+          weight: 100
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 900
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
