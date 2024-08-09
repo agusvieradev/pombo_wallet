@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pombo_wallet/app/global/common_widgets/pombo_text.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_colors.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_white_spaces.dart';
 import 'package:pombo_wallet/app/global/common_widgets/pombo_container.dart';
+import 'package:pombo_wallet/app/global/routes/routes.dart';
 
 class AuthFormContainer extends ConsumerWidget {
   const AuthFormContainer({super.key});
@@ -87,7 +89,9 @@ class AuthFormContainer extends ConsumerWidget {
                         PomboColors.pomboBlue,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      context.goNamed(AppRoute.home.name);
+                    },
                     child: Padding(
                       padding: const EdgeInsets.all(10),
                       child: PomboText().pomboSmText(

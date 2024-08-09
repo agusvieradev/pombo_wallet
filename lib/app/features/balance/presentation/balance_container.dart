@@ -1,4 +1,4 @@
-// ignore_for_file: dead_code
+// ignore_for_file: dead_code, duplicate_ignore
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -80,7 +80,7 @@ class BalanceContainer extends ConsumerWidget {
               ],
             ),
           // ignore: dead_code
-          if (!secondVariable) SizedBox()
+          if (!secondVariable) const SizedBox()
         ],
       ),
     );

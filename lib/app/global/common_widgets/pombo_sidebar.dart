@@ -65,7 +65,9 @@ class PomboSideBar extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.goNamed(AppRoute.login.name);
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,

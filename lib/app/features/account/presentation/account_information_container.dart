@@ -13,33 +13,44 @@ class AccountInformationContainer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return PomboContainer(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          PomboText().pomboLgText(
-            text: 'Tu información',
-            isBold: true,
-            isPrimary: false,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              PomboText().pomboLgText(
+                text: 'Tu información',
+                isBold: true,
+                isPrimary: false,
+              ),
+              PomboWhiteSpaces.hSpaceL,
+              Container(
+                decoration: const BoxDecoration(
+                  color: PomboColors.pomboBackground, 
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(16),
+                  ),
+                ),
+                child: const Column(
+                  children: [
+                    AccountInformation(
+                      prepend: 'Nombre',
+                      append: 'John',
+                    ),
+                    AccountInformation(
+                      prepend: 'Apellido',
+                      append: 'Doe',
+                    ),
+                    AccountInformation(
+                      prepend: 'Email',
+                      append: 'johndoe@pombomail.com.ar',
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
           PomboWhiteSpaces.hSpaceL,
-          Container(
-            color: PomboColors.pomboBackground,
-            child: const Column(
-              children: [
-                AccountInformation(
-                  prepend: 'Nombre',
-                  append: 'John',
-                ),
-                AccountInformation(
-                  prepend: 'Apellido',
-                  append: 'Doe',
-                ),
-                AccountInformation(
-                  prepend: 'Email',
-                  append: 'johndoe@pombomail.com.ar',
-                ),
-              ],
-            ),
-          ),
           PomboWhiteSpaces.hSpaceL,
           Container(
             alignment: Alignment.center,
