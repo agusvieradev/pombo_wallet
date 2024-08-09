@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_colors.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_icons.dart';
-import 'package:pombo_wallet/app/global/constants/pombo_text.dart';
+import 'package:pombo_wallet/app/global/common_widgets/pombo_text.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_white_spaces.dart';
 
 class Balance extends ConsumerWidget {
@@ -15,14 +15,14 @@ class Balance extends ConsumerWidget {
       children: [
         Row(
           children: [
-            PomboText().pomboXLText(text:'\$ 0,00', isBold: true),
+            PomboText().pomboXLText(text:'\$ 0,00'),
             PomboWhiteSpaces.wSpaceS,
             IconButton(
               onPressed: () {},
               icon: const Icon(
                 PomboIcons.show,
                 color: PomboColors.pomboPrimaryText,
-              ),
+              ), 
             ),
           ],
         ),
@@ -30,10 +30,10 @@ class Balance extends ConsumerWidget {
           onPressed: () {},
           icon: const Icon(
             PomboIcons.refresh,
-            color: PomboColors.pomboPrimaryText,
+            color: PomboColors.pomboBlue,
           ),
         )
       ],
     );
   }
-}
+} 

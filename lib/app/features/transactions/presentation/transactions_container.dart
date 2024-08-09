@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pombo_wallet/app/global/common_widgets/pombo_container.dart';
-import 'package:pombo_wallet/app/global/constants/pombo_text.dart';
+import 'package:pombo_wallet/app/global/common_widgets/pombo_text.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_white_spaces.dart';
 
 class TransactionContainer extends ConsumerWidget {

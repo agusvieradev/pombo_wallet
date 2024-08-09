@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_colors.dart';
+import 'package:pombo_wallet/app/global/common_widgets/pombo_text.dart';
 
 class PomboDrawerItem extends ConsumerWidget {
   const PomboDrawerItem({
@@ -25,15 +26,11 @@ class PomboDrawerItem extends ConsumerWidget {
         color: isActive ? PomboColors.pomboBlue : PomboColors.pomboPrimaryText,
         size: 28,
       ),
-      title: Text(
-        title,
-        style: TextStyle(
-          fontFamily: 'Comfortaa',
-          color:
-              isActive ? PomboColors.pomboBlue : PomboColors.pomboPrimaryText,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
+      title: PomboText().pomboMdText(
+        text: title,
+        color: isActive ? PomboColors.pomboBlue : PomboColors.pomboPrimaryText,
+        isBold: true,
+        isPrimary: false,
       ),
       trailing: isActive
           ? Container(

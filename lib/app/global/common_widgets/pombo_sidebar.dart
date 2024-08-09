@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:pombo_wallet/app/global/common_widgets/pombo_drawer_item.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_colors.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_icons.dart';
+import 'package:pombo_wallet/app/global/common_widgets/pombo_text.dart';
+import 'package:pombo_wallet/app/global/constants/pombo_white_spaces.dart';
 import 'package:pombo_wallet/app/global/routes/routes.dart';
 
 class PomboSideBar extends ConsumerWidget {
@@ -64,25 +66,20 @@ class PomboSideBar extends ConsumerWidget {
               padding: const EdgeInsets.only(bottom: 20),
               child: TextButton(
                 onPressed: () {},
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       PomboIcons.logOut,
                       color: PomboColors.pomboRed,
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Cerrar sesión',
-                      style: TextStyle(
-                        fontFamily: 'Comfortaa',
-                        fontWeight: FontWeight.bold,
-                        color: PomboColors.pomboRed,
-                        fontSize: 18,
-                      ),
+                    PomboWhiteSpaces.wSpaceM,
+                    PomboText().pomboMdText(
+                      text: 'Cerrar sesión',
+                      color: PomboColors.pomboRed,
+                      isBold: true,
+                      isPrimary: false,
                     ),
                   ],
                 ),

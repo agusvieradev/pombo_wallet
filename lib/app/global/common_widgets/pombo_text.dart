@@ -4,7 +4,7 @@ import 'package:pombo_wallet/app/global/constants/pombo_colors.dart';
 class PomboText {
   final String _fontFamily = 'Roboto';
   final String _secondaryFontFamily = 'Kiona';
-  
+
   Text pomboSmText({
     required String text,
     bool isBold = false,

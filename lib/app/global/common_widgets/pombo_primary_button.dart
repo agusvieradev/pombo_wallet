@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_colors.dart';
-import 'package:pombo_wallet/app/global/constants/pombo_text.dart';
+import 'package:pombo_wallet/app/global/common_widgets/pombo_text.dart';
+import 'package:pombo_wallet/app/global/constants/pombo_white_spaces.dart';
 
 class PomboPrimaryButton extends ConsumerWidget {
   const PomboPrimaryButton({
@@ -17,29 +18,33 @@ class PomboPrimaryButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SizedBox(
+    return Expanded(
       child: ElevatedButton(
         style: const ButtonStyle(
+          alignment: Alignment.center,
           backgroundColor: MaterialStatePropertyAll(
             PomboColors.pomboBlue,
           ),
         ),
         onPressed: buttonAction,
-        child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Row(
-              children: [
-                Icon(
-                  buttonIcon,
-                  color: PomboColors.pomboWhite,
-                ),
-                PomboText().pomboMdText(
-                  text: buttonText,
-                  isBold: true,
-                  color: PomboColors.pomboWhite,
-                ),
-              ],
-            )),
+        child: Container(
+          alignment: Alignment.center,
+          padding: const EdgeInsets.all(5),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                buttonIcon,
+                color: PomboColors.pomboWhite,
+              ),
+              PomboWhiteSpaces.wSpaceM,
+              PomboText().pomboMdText(
+                text: buttonText,
+                color: PomboColors.pomboWhite,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

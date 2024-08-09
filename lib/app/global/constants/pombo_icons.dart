@@ -9,4 +9,6 @@ class PomboIcons {
   static const IconData hide = Icons.visibility_off_outlined;
   static const IconData show = Icons.visibility_outlined;
   static const IconData refresh = Icons.refresh_outlined;
+  static const IconData deposit = Icons.arrow_downward_outlined;
+  static const IconData withdraw = Icons.arrow_upward_outlined;
 }
