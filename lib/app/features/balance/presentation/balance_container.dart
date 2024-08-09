@@ -1,8 +1,10 @@
+// ignore_for_file: dead_code
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_icons.dart';
-import 'package:pombo_wallet/app/global/common_widgets/pombo_text.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_colors.dart';
+import 'package:pombo_wallet/app/global/common_widgets/pombo_text.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_white_spaces.dart';
 import 'package:pombo_wallet/app/global/common_widgets/pombo_container.dart';
 import 'package:pombo_wallet/app/features/balance/presentation/balance.dart';
@@ -14,7 +16,7 @@ class BalanceContainer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final transactions = [];
-    bool secondVariable = true;
+    bool secondVariable = !true;
     return PomboContainer(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -23,16 +25,17 @@ class BalanceContainer extends ConsumerWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              PomboText().pomboSmText(
+              PomboText().pomboMdText(
                 text: 'Hola, John Doe!',
                 isPrimary: false,
                 isBold: true,
                 color: PomboColors.pomboBlue,
               ),
               PomboWhiteSpaces.hSpaceL,
-              PomboText().pomboMdText(
+              PomboText().pomboLgText(
                 text: 'Tu cuenta',
                 isBold: true,
+                isPrimary: false,
               ),
               PomboWhiteSpaces.hSpaceM,
               const Balance(),
@@ -62,7 +65,11 @@ class BalanceContainer extends ConsumerWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                PomboText().pomboMdText(text: 'Tus movimientos', isBold: true),
+                PomboText().pomboMdText(
+                  text: 'Tus movimientos',
+                  isBold: true,
+                  isPrimary: false,
+                ),
                 PomboWhiteSpaces.hSpaceM,
                 transactions.isEmpty
                     ? PomboText().pomboSmText(
@@ -72,6 +79,7 @@ class BalanceContainer extends ConsumerWidget {
                     : const SizedBox()
               ],
             ),
+          // ignore: dead_code
           if (!secondVariable) SizedBox()
         ],
       ),

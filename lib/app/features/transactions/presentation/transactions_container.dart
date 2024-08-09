@@ -14,7 +14,11 @@ class TransactionContainer extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          PomboText().pomboMdText(text: 'Tus movimientos', isBold: true),
+          PomboText().pomboLgText(
+            text: 'Tus movimientos',
+            isBold: true,
+            isPrimary: false,
+          ),
           PomboWhiteSpaces.hSpaceM,
           transactions.isEmpty
               ? PomboText().pomboSmText(

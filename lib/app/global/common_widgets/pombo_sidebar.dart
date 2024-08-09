@@ -45,7 +45,7 @@ class PomboSideBar extends ConsumerWidget {
                   },
                 ),
                 PomboDrawerItem(
-                  title: 'Mi cuenta',
+                  title: 'Cuenta',
                   icon: PomboIcons.userAccount,
                   isActive: currentPath == '/${AppRoute.account.name}',
                   action: () {

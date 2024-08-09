@@ -1,3 +1,5 @@
+// ignore_for_file: dead_code
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pombo_wallet/app/features/balance/presentation/balance_container.dart';
@@ -9,7 +11,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool secondVariable = true;
+    bool secondVariable = !true;
 
     return Container(
       alignment: Alignment.center,

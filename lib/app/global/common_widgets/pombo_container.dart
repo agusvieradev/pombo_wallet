@@ -6,7 +6,7 @@ class PomboContainer extends ConsumerWidget {
   const PomboContainer({
     super.key,
     required this.child,
-    this.boxWidth = 700,
+    this.boxWidth = 750,
   });
   final Widget child;
   final double boxWidth;

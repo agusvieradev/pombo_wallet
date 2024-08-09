@@ -22,7 +22,7 @@ class PomboText {
             : isLight
                 ? FontWeight.w100
                 : FontWeight.normal,
-        fontSize: 18.0,
+        fontSize: 20.0,
       ),
     );
   }
@@ -44,7 +44,7 @@ class PomboText {
             : isLight
                 ? FontWeight.w100
                 : FontWeight.normal,
-        fontSize: 20.0,
+        fontSize: 22.0,
       ),
     );
   }
@@ -66,7 +66,7 @@ class PomboText {
             : isLight
                 ? FontWeight.w100
                 : FontWeight.normal,
-        fontSize: 22.0,
+        fontSize: 26.0,
       ),
     );
   }
