@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_colors.dart';
 import 'package:pombo_wallet/app/global/common_widgets/pombo_text.dart';
 
-class PomboDrawerItem extends ConsumerWidget {
-  const PomboDrawerItem({
+class PomboSidebarItem extends ConsumerWidget {
+  const PomboSidebarItem({
     super.key,
     required this.title,
     required this.icon,

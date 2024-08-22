@@ -8,7 +8,7 @@ class AuthRepository {
     required this.firebaseAuth,
     required this.googleAuth,
   });
-  
+
   final FirebaseAuth firebaseAuth;
   final GoogleSignIn googleAuth;
 
@@ -21,7 +21,7 @@ class AuthRepository {
     return userCredential;
   }
 
-  Future<User?> logInWithGoogle() async {
+  Future<UserCredential?> logInWithGoogle() async {
     final GoogleSignInAccount? googleUser = await googleAuth.signIn();
     if (googleUser == null) return null;
 
@@ -36,7 +36,7 @@ class AuthRepository {
     final UserCredential userCredential =
         await firebaseAuth.signInWithCredential(credential);
 
-    return userCredential.user;
+    return userCredential;
   }
 
   Future<UserCredential> registerUser(String email, String password) async {

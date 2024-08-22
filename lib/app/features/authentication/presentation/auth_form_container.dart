@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pombo_wallet/app/global/routes/routes.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:pombo_wallet/app/features/authentication/data/firebase_auth_providers.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_colors.dart';
 import 'package:pombo_wallet/app/global/common_widgets/pombo_text.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_white_spaces.dart';
@@ -14,44 +16,36 @@ class AuthFormContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-    // final AuthService authService = ref.read(authServiceProvider.notifier);
-    // final UserState authState = ref.watch(authServiceProvider);
+    final AuthService authService = ref.read(authServiceProvider.notifier);
+    final UserState authState = ref.watch(authServiceProvider);
+    final FirebaseAuth firebaseAuth = ref.watch(firebaseAuthProvider);
+    final GoogleSignIn googleAuth = ref.watch(googleAuthProvider);
+    void showSnackbar() {
+      final SnackBar snackbar = SnackBar(
+        content: PomboText().pomboMdText(text: authState.errorMessage),
+        backgroundColor: PomboColors.pomboRed,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackbar);
+    }
 
-    // void showSnackbar() {
-    //   final SnackBar snackbar = SnackBar(
-    //     content: PomboText().pomboMdText(text: authState.errorMessage),
-    //     backgroundColor: PomboColors.pomboRed,
-    //   );
-    //   ScaffoldMessenger.of(context).showSnackBar(snackbar);
-    // }
-
-    // void handleAuth() async {
-    //   await authService.authWithCredentials();
-    //   if (authState.user != null) {
-    //     if (context.mounted) {
-    //       context.goNamed(AppRoute.home.name);
-    //     }
-    //   } else if (authState.isError) {
-    //     showSnackbar();
-    //   }
-    // }
-
-    void fakeAuth() {
+    void handleAuth() async {
       ref.read(isLoading.notifier).state = true;
-      Future.delayed(const Duration(seconds: 1), () {
-        if (emailController.text == 'maxi' &&
-            passwordController.text == 'maxi') {
-          ref.read(isAuthError.notifier).state = false;
-
-          ref.read(isLoading.notifier).state = false;
-          context.goNamed(AppRoute.home.name);
-        } else {
+      try {
+        await authService.authWithCredentials();
+        if (authState.user != null) {
+          if (context.mounted) {
+            ref.read(isAuthError.notifier).state = false;
+            ref.read(isLoading.notifier).state = false;
+          }
+        } else if (authState.isError) {
           ref.read(isLoading.notifier).state = false;
           ref.read(isAuthError.notifier).state = true;
+          showSnackbar();
         }
-      });
+      } catch (e) {
+        showSnackbar();
+        throw Exception(e);
+      }
     }
 
     return Expanded(
@@ -82,7 +76,7 @@ class AuthFormContainer extends ConsumerWidget {
               child: Column(
                 children: [
                   TextFormField(
-                    controller: emailController,
+                    controller: authService.emailController,
                     style: const TextStyle(
                       fontFamily: 'Roboto',
                       fontSize: 22,
@@ -94,7 +88,7 @@ class AuthFormContainer extends ConsumerWidget {
                   PomboWhiteSpaces.hSpaceM,
                   TextFormField(
                     obscureText: true,
-                    controller: passwordController,
+                    controller: authService.passwordController,
                     style: const TextStyle(
                       fontFamily: 'Roboto',
                       color: PomboColors.pomboPrimaryText,
@@ -130,8 +124,7 @@ class AuthFormContainer extends ConsumerWidget {
                       ),
                     ),
                     onPressed: () {
-                      // handleAuth();
-                      fakeAuth();
+                      handleAuth();
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(10),
@@ -143,6 +136,50 @@ class AuthFormContainer extends ConsumerWidget {
                               text: 'Ingresar',
                               color: PomboColors.pomboWhite,
                             ),
+                    ),
+                  ),
+                ),
+                PomboWhiteSpaces.hSpaceM,
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    style: const ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(
+                        PomboColors.pomboWhite,
+                      ),
+                    ),
+                    onPressed: () async {
+                      final GoogleSignInAccount? googleUser =
+                          await googleAuth.signIn();
+                      // if (googleUser == null) return null;
+                      // print('not null');
+                      final GoogleSignInAuthentication googleSignInCredentials =
+                          await googleUser!.authentication;
+                      final AuthCredential credential =
+                          GoogleAuthProvider.credential(
+                        accessToken: googleSignInCredentials.accessToken,
+                        idToken: googleSignInCredentials.idToken,
+                      );
+                      final UserCredential userCredential =
+                          await firebaseAuth.signInWithCredential(credential);
+                      ref.read(authServiceProvider.notifier).state = UserState(
+                          isLoading: false, user: userCredential.user);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            'google-icon.svg',
+                            width: 25,
+                          ),
+                          PomboWhiteSpaces.wSpaceM,
+                          PomboText().pomboSmText(
+                            text: 'Ingresar con Google',
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -173,4 +210,5 @@ class AuthFormContainer extends ConsumerWidget {
 }
 
 final isLoading = StateProvider((ref) => false);
+final isObscure = StateProvider((ref) => true);
 final isAuthError = StateProvider((ref) => false);

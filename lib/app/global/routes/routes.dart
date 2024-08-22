@@ -1,20 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pombo_wallet/app/features/home/presentation/home_screen.dart';
 import 'package:pombo_wallet/app/global/common_widgets/pombo_screen_layout.dart';
 import 'package:pombo_wallet/app/features/account/presentation/account_screen.dart';
 import 'package:pombo_wallet/app/features/authentication/presentation/auth_screen.dart';
-// import 'package:pombo_wallet/app/features/authentication/application/firebase_auth_instance.dart';
+import 'package:pombo_wallet/app/features/authentication/application/firebase_auth_instance.dart';
 
 enum AppRoute { home, login, account, support, register }
 
 final goRouterProvider = Provider<GoRouter>(
   (ref) {
+    final AsyncValue<User?> authState = ref.watch(authProvider);
+
     return GoRouter(
-      initialLocation: '/${AppRoute.home.name}',
+      initialLocation: '/',
       debugLogDiagnostics: false,
+      redirect: (context, state) {
+        final bool isLoggedIn = authState.asData?.value != null;
+        final bool loginLocation = state.name == AppRoute.login.name;
+
+        if (!isLoggedIn && !loginLocation) return '/${AppRoute.login.name}';
+        if (isLoggedIn && loginLocation) return '/';
+
+        return null;
+      },
       routes: [
         ShellRoute(
           builder: (
@@ -28,7 +39,7 @@ final goRouterProvider = Provider<GoRouter>(
           },
           routes: [
             GoRoute(
-              path: '/${AppRoute.home.name}',
+              path: '/',
               name: AppRoute.home.name,
               pageBuilder: (context, state) => const NoTransitionPage(
                 child: HomeScreen(),

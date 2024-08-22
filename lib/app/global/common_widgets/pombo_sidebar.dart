@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pombo_wallet/app/global/common_widgets/pombo_drawer_item.dart';
+import 'package:pombo_wallet/app/features/authentication/application/auth_service.dart';
+import 'package:pombo_wallet/app/global/common_widgets/pombo_sidebar_item.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_colors.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_icons.dart';
 import 'package:pombo_wallet/app/global/common_widgets/pombo_text.dart';
@@ -15,6 +16,7 @@ class PomboSideBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final String currentPath = GoRouterState.of(context).matchedLocation;
+    final AuthService authService = ref.read(authServiceProvider.notifier);
     return Material(
       elevation: 10.0,
       child: Container(
@@ -36,7 +38,7 @@ class PomboSideBar extends ConsumerWidget {
                   ),
                 ),
                 const Divider(),
-                PomboDrawerItem(
+                PomboSidebarItem(
                   title: 'Home',
                   icon: PomboIcons.home,
                   isActive: currentPath == '/${AppRoute.home.name}',
@@ -44,7 +46,7 @@ class PomboSideBar extends ConsumerWidget {
                     context.goNamed(AppRoute.home.name);
                   },
                 ),
-                PomboDrawerItem(
+                PomboSidebarItem(
                   title: 'Cuenta',
                   icon: PomboIcons.userAccount,
                   isActive: currentPath == '/${AppRoute.account.name}',
@@ -52,7 +54,7 @@ class PomboSideBar extends ConsumerWidget {
                     context.goNamed(AppRoute.account.name);
                   },
                 ),
-                PomboDrawerItem(
+                PomboSidebarItem(
                   title: 'Soporte',
                   icon: PomboIcons.support,
                   isActive: currentPath == '/${AppRoute.support.name}',
@@ -66,7 +68,7 @@ class PomboSideBar extends ConsumerWidget {
               padding: const EdgeInsets.only(bottom: 20),
               child: TextButton(
                 onPressed: () {
-                  context.goNamed(AppRoute.login.name);
+                  authService.logOut();
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
