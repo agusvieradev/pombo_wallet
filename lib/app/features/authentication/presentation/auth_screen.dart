@@ -10,10 +10,11 @@ class AuthScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      color: PomboColors.pomboBackground,
+      color: PomboColors.pomboBlue,
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: const Row(
+        
         children: [
           AuthFormContainer(),
           PomboInformation(),

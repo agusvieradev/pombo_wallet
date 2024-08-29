@@ -11,4 +11,5 @@ class PomboIcons {
   static const IconData refresh = Icons.refresh_outlined;
   static const IconData deposit = Icons.arrow_downward_outlined;
   static const IconData withdraw = Icons.arrow_upward_outlined;
+  static const IconData goBack = Icons.arrow_back;
 }

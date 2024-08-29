@@ -29,7 +29,7 @@ class AccountNavBar extends ConsumerWidget {
               ),
               PomboWhiteSpaces.wSpaceL,
               AccountNavItem(
-                navItemLabel: 'Vista 2',
+                navItemLabel: 'Límites',
                 navItemisSelected: accountPagesIndex == 1,
                 navItemAction: () {
                   accountNavService.changePageIndex(1);

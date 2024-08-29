@@ -5,9 +5,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_icons.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_colors.dart';
 import 'package:pombo_wallet/app/global/common_widgets/pombo_text.dart';
+import 'package:pombo_wallet/app/global/common_widgets/pombo_modal.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_white_spaces.dart';
-import 'package:pombo_wallet/app/global/common_widgets/pombo_container.dart';
 import 'package:pombo_wallet/app/features/balance/presentation/balance.dart';
+import 'package:pombo_wallet/app/global/common_widgets/pombo_container.dart';
 import 'package:pombo_wallet/app/global/common_widgets/pombo_primary_button.dart';
 
 class BalanceContainer extends ConsumerWidget {
@@ -15,8 +16,6 @@ class BalanceContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final transactions = [];
-    bool secondVariable = !true;
     return PomboContainer(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -26,7 +25,7 @@ class BalanceContainer extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               PomboText().pomboMdText(
-                text: 'Hola, John Doe!',
+                text: 'Hola,  ',
                 isPrimary: false,
                 isBold: true,
                 color: PomboColors.pomboBlue,
@@ -35,7 +34,6 @@ class BalanceContainer extends ConsumerWidget {
               PomboText().pomboLgText(
                 text: 'Tu cuenta',
                 isBold: true,
-                isPrimary: false,
               ),
               PomboWhiteSpaces.hSpaceM,
               const Balance(),
@@ -48,39 +46,35 @@ class BalanceContainer extends ConsumerWidget {
               PomboPrimaryButton(
                 buttonText: 'Ingresar',
                 buttonIcon: PomboIcons.deposit,
-                buttonAction: () {},
+                buttonAction: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return PomboModal(
+                        body: Container(),
+                      );
+                    },
+                  );
+                },
               ),
               PomboWhiteSpaces.wSpaceL,
               PomboPrimaryButton(
                 buttonText: 'Retirar',
                 buttonIcon: PomboIcons.withdraw,
-                buttonAction: () {},
+                buttonAction: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return PomboModal(
+                        body: Container(),
+                      );
+                    },
+                  );
+                },
               ),
             ],
           ),
-          if (secondVariable) PomboWhiteSpaces.hSpaceM,
-          if (secondVariable) const Divider(),
-          if (secondVariable) PomboWhiteSpaces.hSpaceM,
-          if (secondVariable)
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                PomboText().pomboMdText(
-                  text: 'Tus movimientos',
-                  isBold: true,
-                  isPrimary: false,
-                ),
-                PomboWhiteSpaces.hSpaceM,
-                transactions.isEmpty
-                    ? PomboText().pomboSmText(
-                        text:
-                            'Todavia no tenés ningun movimiento, apretá el botón de ingresar para generar el primero',
-                      )
-                    : const SizedBox()
-              ],
-            ),
-          // ignore: dead_code
-          if (!secondVariable) const SizedBox()
+          PomboWhiteSpaces.hSpaceM,
         ],
       ),
     );

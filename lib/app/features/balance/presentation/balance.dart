@@ -15,14 +15,14 @@ class Balance extends ConsumerWidget {
       children: [
         Row(
           children: [
-            PomboText().pomboXLText(text:'\$ 0,00'),
+            PomboText().pomboXLText(text: '\$ 0,00'),
             PomboWhiteSpaces.wSpaceS,
             IconButton(
               onPressed: () {},
               icon: const Icon(
                 PomboIcons.show,
-                color: PomboColors.pomboPrimaryText,
-              ), 
+                color: PomboColors.pomboBlue,
+              ),
             ),
           ],
         ),
@@ -36,4 +36,4 @@ class Balance extends ConsumerWidget {
       ],
     );
   }
-} 
+}

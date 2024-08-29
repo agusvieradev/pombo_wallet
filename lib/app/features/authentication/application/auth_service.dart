@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pombo_wallet/app/features/authentication/domain/user_state.dart';
-import 'package:pombo_wallet/app/features/authentication/data/auth_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:pombo_wallet/app/features/user/domain/user_state.dart';
+import 'package:pombo_wallet/app/features/authentication/data/auth_repository.dart';
 
 class AuthService extends StateNotifier<UserState> {
   AuthService({required this.authRepository}) : super(UserState());

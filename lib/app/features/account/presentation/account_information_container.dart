@@ -21,7 +21,6 @@ class AccountInformationContainer extends ConsumerWidget {
               PomboText().pomboLgText(
                 text: 'Tu información',
                 isBold: true,
-                isPrimary: false,
               ),
               PomboWhiteSpaces.hSpaceL,
               Container(
@@ -50,18 +49,18 @@ class AccountInformationContainer extends ConsumerWidget {
               ),
             ],
           ),
-          PomboWhiteSpaces.hSpaceL,
-          PomboWhiteSpaces.hSpaceL,
-          Container(
-            alignment: Alignment.center,
-            child: TextButton(
-              child: PomboText().pomboLgText(
-                text: 'Eliminar cuenta',
-                color: PomboColors.pomboRed,
-              ),
-              onPressed: () {},
-            ),
-          ),
+          // PomboWhiteSpaces.hSpaceL,
+          // PomboWhiteSpaces.hSpaceL,
+          // Container(
+          //   alignment: Alignment.center,
+          //   child: TextButton(
+          //     child: PomboText().pomboLgText(
+          //       text: 'Eliminar cuenta',
+          //       color: PomboColors.pomboRed,
+          //     ),
+          //     onPressed: () {},
+          //   ),
+          // ),
         ],
       ),
     );

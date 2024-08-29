@@ -1,15 +1,13 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:pombo_wallet/app/features/authentication/data/firebase_auth_providers.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_colors.dart';
+import 'package:pombo_wallet/app/features/user/domain/user_state.dart';
 import 'package:pombo_wallet/app/global/common_widgets/pombo_text.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_white_spaces.dart';
 import 'package:pombo_wallet/app/global/common_widgets/pombo_container.dart';
-import 'package:pombo_wallet/app/features/authentication/domain/user_state.dart';
 import 'package:pombo_wallet/app/features/authentication/application/auth_service.dart';
+import 'package:pombo_wallet/app/global/routes/routes.dart';
 
 class AuthFormContainer extends ConsumerWidget {
   const AuthFormContainer({super.key});
@@ -18,8 +16,7 @@ class AuthFormContainer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final AuthService authService = ref.read(authServiceProvider.notifier);
     final UserState authState = ref.watch(authServiceProvider);
-    final FirebaseAuth firebaseAuth = ref.watch(firebaseAuthProvider);
-    final GoogleSignIn googleAuth = ref.watch(googleAuthProvider);
+
     void showSnackbar() {
       final SnackBar snackbar = SnackBar(
         content: PomboText().pomboMdText(text: authState.errorMessage),
@@ -33,18 +30,20 @@ class AuthFormContainer extends ConsumerWidget {
       try {
         await authService.authWithCredentials();
         if (authState.user != null) {
-          if (context.mounted) {
-            ref.read(isAuthError.notifier).state = false;
-            ref.read(isLoading.notifier).state = false;
-          }
+          ref.read(isAuthError.notifier).state = false;
+          ref.read(isLoading.notifier).state = false;
         } else if (authState.isError) {
           ref.read(isLoading.notifier).state = false;
-          ref.read(isAuthError.notifier).state = true;
           showSnackbar();
         }
       } catch (e) {
-        showSnackbar();
-        throw Exception(e);
+        final SnackBar snackbar = SnackBar(
+          content: PomboText().pomboMdText(text: authState.errorMessage),
+          backgroundColor: PomboColors.pomboRed,
+        );
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+        }
       }
     }
 
@@ -59,14 +58,14 @@ class AuthFormContainer extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 PomboText().pomboXLText(
-                  text: 'Bienvenido a Pombo',
+                  text: 'Bienvenido a POMBO',
                   isBold: true,
                   isPrimary: false,
+                  isSpaced: true,
                 ),
                 PomboWhiteSpaces.hSpaceM,
                 PomboText().pomboMdText(
                   text: 'Inicia sesión con tu correo y contraseña',
-                  isPrimary: false,
                   color: PomboColors.pomboSecondaryText,
                 ),
               ],
@@ -82,7 +81,9 @@ class AuthFormContainer extends ConsumerWidget {
                       fontSize: 22,
                     ),
                     decoration: InputDecoration(
-                      label: PomboText().pomboSmText(text: 'Email'),
+                      label: PomboText().pomboSmText(
+                        text: 'Email',
+                      ),
                     ),
                   ),
                   PomboWhiteSpaces.hSpaceM,
@@ -91,11 +92,13 @@ class AuthFormContainer extends ConsumerWidget {
                     controller: authService.passwordController,
                     style: const TextStyle(
                       fontFamily: 'Roboto',
-                      color: PomboColors.pomboPrimaryText,
+                      color: PomboColors.pomboBlue,
                       fontSize: 22,
                     ),
                     decoration: InputDecoration(
-                      label: PomboText().pomboSmText(text: 'Contraseña'),
+                      label: PomboText().pomboSmText(
+                        text: 'Contraseña',
+                      ),
                     ),
                   ),
                 ],
@@ -140,50 +143,6 @@ class AuthFormContainer extends ConsumerWidget {
                   ),
                 ),
                 PomboWhiteSpaces.hSpaceM,
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: const ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(
-                        PomboColors.pomboWhite,
-                      ),
-                    ),
-                    onPressed: () async {
-                      final GoogleSignInAccount? googleUser =
-                          await googleAuth.signIn();
-                      // if (googleUser == null) return null;
-                      // print('not null');
-                      final GoogleSignInAuthentication googleSignInCredentials =
-                          await googleUser!.authentication;
-                      final AuthCredential credential =
-                          GoogleAuthProvider.credential(
-                        accessToken: googleSignInCredentials.accessToken,
-                        idToken: googleSignInCredentials.idToken,
-                      );
-                      final UserCredential userCredential =
-                          await firebaseAuth.signInWithCredential(credential);
-                      ref.read(authServiceProvider.notifier).state = UserState(
-                          isLoading: false, user: userCredential.user);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            'google-icon.svg',
-                            width: 25,
-                          ),
-                          PomboWhiteSpaces.wSpaceM,
-                          PomboText().pomboSmText(
-                            text: 'Ingresar con Google',
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                PomboWhiteSpaces.hSpaceM,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -191,11 +150,12 @@ class AuthFormContainer extends ConsumerWidget {
                       text: '¿No tenes cuenta?',
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.goNamed(AppRoute.register.name);
+                      },
                       child: PomboText().pomboSmText(
                         text: 'Crear una',
                         color: PomboColors.pomboBlue,
-                        isBold: true,
                       ),
                     ),
                   ],

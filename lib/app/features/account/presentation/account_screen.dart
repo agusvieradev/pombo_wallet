@@ -8,6 +8,7 @@ class AccountScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
+      padding: const EdgeInsets.all(20),
       alignment: Alignment.center,
       child: const SingleChildScrollView(
         child: AccountNavContainer(),

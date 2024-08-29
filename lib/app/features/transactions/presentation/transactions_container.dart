@@ -17,7 +17,6 @@ class TransactionContainer extends ConsumerWidget {
           PomboText().pomboLgText(
             text: 'Tus movimientos',
             isBold: true,
-            isPrimary: false,
           ),
           PomboWhiteSpaces.hSpaceM,
           transactions.isEmpty

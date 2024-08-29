@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:pombo_wallet/app/features/authentication/data/firebase_auth_providers.dart';
+import 'package:pombo_wallet/app/global/firebase/firebase_providers.dart';
 
 class AuthRepository {
   AuthRepository({
@@ -13,30 +13,38 @@ class AuthRepository {
   final GoogleSignIn googleAuth;
 
   Future<UserCredential> logIn(String email, String password) async {
-    final UserCredential userCredential =
-        await firebaseAuth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-    return userCredential;
+    try {
+      final UserCredential userCredential =
+          await firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return userCredential;
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 
   Future<UserCredential?> logInWithGoogle() async {
-    final GoogleSignInAccount? googleUser = await googleAuth.signIn();
-    if (googleUser == null) return null;
+    try {
+      final GoogleSignInAccount? googleUser = await googleAuth.signInSilently();
+      if (googleUser == null) return null;
 
-    final GoogleSignInAuthentication googleSignInCredentials =
-        await googleUser.authentication;
+      final GoogleSignInAuthentication googleSignInCredentials =
+          await googleUser.authentication;
 
-    final AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleSignInCredentials.accessToken,
-      idToken: googleSignInCredentials.idToken,
-    );
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInCredentials.accessToken,
+        idToken: googleSignInCredentials.idToken,
+      );
 
-    final UserCredential userCredential =
-        await firebaseAuth.signInWithCredential(credential);
+      final UserCredential userCredential =
+          await firebaseAuth.signInWithCredential(credential);
 
-    return userCredential;
+      return userCredential;
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 
   Future<UserCredential> registerUser(String email, String password) async {

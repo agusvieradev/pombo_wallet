@@ -6,8 +6,6 @@
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="A new Flutter project.">
-  <meta name="google-signin-client_id"
-    content="676753289149-676u5rkttgidm3jtlmdruo784i1048sj.apps.googleusercontent.com">
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,6 +13,8 @@
   <meta name="apple-mobile-web-app-title" content="pombo_wallet">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
+  <meta name="google-signin-client_id"
+    content="676753289149-676u5rkttgidm3jtlmdruo784i1048sj.apps.googleusercontent.com">
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png" />
 
@@ -44,7 +44,6 @@
       });
     });
   </script>
-
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
@@ -60,6 +59,7 @@
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
   </script>
+  <script src="https://apis.google.com/js/api.js"></script>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 </body>

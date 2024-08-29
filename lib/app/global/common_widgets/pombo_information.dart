@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pombo_wallet/app/global/constants/pombo_colors.dart';
 
 class PomboInformation extends ConsumerWidget {
   const PomboInformation({super.key});
@@ -10,7 +11,6 @@ class PomboInformation extends ConsumerWidget {
     return Expanded(
       child: Container(
         decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 20, 149, 255),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(26),
             bottomLeft: Radius.circular(26),
@@ -18,11 +18,11 @@ class PomboInformation extends ConsumerWidget {
         ),
         alignment: Alignment.center,
         child: SvgPicture.asset(
-          'pombo_logo.svg',
+          'pombo_logo_og.svg',
           width: 700,
           height: 700,
           colorFilter: const ColorFilter.mode(
-            Colors.white,
+            PomboColors.pomboWhite,
             BlendMode.srcIn,
           ),
         ),

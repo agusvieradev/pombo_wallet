@@ -33,11 +33,9 @@ class AccountNavItem extends ConsumerWidget {
         ),
         child: PomboText().pomboLgText(
           text: navItemLabel,
-          isPrimary: false,
           isBold: navItemisSelected,
-          color: navItemisSelected
-              ? PomboColors.pomboBlue
-              : PomboColors.pomboPrimaryText,
+          color:
+              navItemisSelected ? PomboColors.pomboBlue : PomboColors.pomboBlue,
         ),
       ),
     );

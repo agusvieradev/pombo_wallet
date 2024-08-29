@@ -18,8 +18,6 @@ class AccountNavContainer extends ConsumerWidget {
       alignment: Alignment.center,
       height: 900,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const AccountNavBar(),
           PomboWhiteSpaces.hSpaceL,

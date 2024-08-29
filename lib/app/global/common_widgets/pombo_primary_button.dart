@@ -10,9 +10,13 @@ class PomboPrimaryButton extends ConsumerWidget {
     required this.buttonText,
     required this.buttonAction,
     this.buttonIcon,
+    this.buttonColor,
+    this.buttonTextColor,
   });
 
   final String buttonText;
+  final Color? buttonColor;
+  final Color? buttonTextColor;
   final IconData? buttonIcon;
   final void Function()? buttonAction;
 
@@ -20,10 +24,10 @@ class PomboPrimaryButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Expanded(
       child: ElevatedButton(
-        style: const ButtonStyle(
+        style: ButtonStyle(
           alignment: Alignment.center,
           backgroundColor: MaterialStatePropertyAll(
-            PomboColors.pomboBlue,
+            buttonColor ?? PomboColors.pomboBlue,
           ),
         ),
         onPressed: buttonAction,
@@ -35,12 +39,12 @@ class PomboPrimaryButton extends ConsumerWidget {
             children: [
               Icon(
                 buttonIcon,
-                color: PomboColors.pomboWhite,
+                color: buttonTextColor ?? PomboColors.pomboWhite,
               ),
               PomboWhiteSpaces.wSpaceM,
               PomboText().pomboMdText(
                 text: buttonText,
-                color: PomboColors.pomboWhite,
+                color: buttonTextColor ?? PomboColors.pomboWhite,
               ),
             ],
           ),

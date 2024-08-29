@@ -11,17 +11,15 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool secondVariable = !true;
-
     return Container(
-      alignment: Alignment.center,
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      padding: const EdgeInsets.all(20),
+      child: const SingleChildScrollView(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const BalanceContainer(),
-            if (!secondVariable) PomboWhiteSpaces.hSpaceL,
-            if (!secondVariable) const TransactionContainer(),
+            BalanceContainer(),
+            PomboWhiteSpaces.wSpaceL,
+            TransactionContainer(),
           ],
         ),
       ),
