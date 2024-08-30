@@ -11,19 +11,20 @@ class AccountRepository {
   Future<void> createAccount(
     String userId,
     String accountId,
-    String type,
     double balance,
     String currency,
   ) async {
-    final accountsCollection = FirebaseFirestore.instance
-        .collection('users')
-        .doc(userId)
-        .collection('accounts');
+    final CollectionReference<Map<String, dynamic>> accountsCollection =
+        FirebaseFirestore.instance
+            .collection('users')
+            .doc(userId)
+            .collection('accounts');
 
     await accountsCollection.doc(accountId).set(
       {
-        'type': type,
         'balance': balance,
+        'cvu': '000000000000',
+        'account_data': '102030405-123123',
         'currency': currency,
         'createdAt': FieldValue.serverTimestamp(),
       },

@@ -35,6 +35,19 @@ class TransactionRepository {
       'date': FieldValue.serverTimestamp(),
     });
   }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getTransactionsStream(
+    String userId,
+    String accountId,
+  ) {
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .collection('accounts')
+        .doc(accountId)
+        .collection('transactions')
+        .snapshots();
+  }
 }
 
 final Provider<TransactionRepository> transactionRepositoryProvider =
