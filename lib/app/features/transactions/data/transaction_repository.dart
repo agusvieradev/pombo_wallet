@@ -14,19 +14,24 @@ class TransactionRepository {
     String transactionId,
     double amount,
     String description,
+    String currency,
+    String method,
     String type,
   ) async {
-    final transactionsCollection = FirebaseFirestore.instance
-        .collection('users')
-        .doc(userId)
-        .collection('accounts')
-        .doc(accountId)
-        .collection('transactions');
+    final CollectionReference<Map<String, dynamic>> transactionsCollection =
+        FirebaseFirestore.instance
+            .collection('users')
+            .doc(userId)
+            .collection('accounts')
+            .doc(accountId)
+            .collection('transactions');
 
     await transactionsCollection.doc(transactionId).set({
       'amount': amount,
       'description': description,
       'type': type,
+      'payment_method': method,
+      'currency': currency,
       'date': FieldValue.serverTimestamp(),
     });
   }

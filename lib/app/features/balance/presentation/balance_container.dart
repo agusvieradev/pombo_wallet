@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pombo_wallet/app/features/transactions/presentation/transaction_withdraw_modal.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_icons.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_colors.dart';
 import 'package:pombo_wallet/app/global/common_widgets/pombo_text.dart';
@@ -50,9 +51,7 @@ class BalanceContainer extends ConsumerWidget {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return PomboModal(
-                        body: Container(),
-                      );
+                      return const TransactionWithdrawModal();
                     },
                   );
                 },

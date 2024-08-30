@@ -21,10 +21,12 @@ class PomboModal extends ConsumerWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(
             12,
-          ), // Radio para asegurar que el container sigue el borde
+          ),
         ),
-        constraints:
-            BoxConstraints(maxWidth: MediaQuery.of(context).size.width / 3),
+        constraints: BoxConstraints(
+          maxWidth: MediaQuery.of(context).size.width / 3,
+          maxHeight: MediaQuery.of(context).size.height / 1.4,
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
