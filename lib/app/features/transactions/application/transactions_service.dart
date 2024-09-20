@@ -129,8 +129,7 @@ class TransactionService extends StateNotifier<Map<String, dynamic>> {
     // amountController.clear();
   }
 
-  final String apiKey =
-      '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';
+
 
   Future<void> sendEmail(
     String email,
