@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pombo_wallet/app/features/account/presentation/account_information_container.dart';
-import 'package:pombo_wallet/app/global/common_widgets/pombo_container.dart';
+import 'package:pombo_wallet/app/features/account/presentation/account_limits.dart';
 
 class AccountNavService extends StateNotifier<List<Widget>> {
   AccountNavService({required this.ref})
       : super([
           const AccountInformationContainer(),
-          const PomboContainer(
-            child: Center(
-              child: Text('VISTA "'),
-            ),
-          )
+          const AccountLimitsContainer(),
         ]);
 
   Ref ref;

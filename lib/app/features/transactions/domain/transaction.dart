@@ -9,7 +9,7 @@ class Transaction {
   });
   final double amount;
   final String description;
-  final double type;
+  final String type;
   final String paymentMethod;
   final String currency;
   final String date;

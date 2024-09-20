@@ -14,11 +14,13 @@ class UserRegisterService extends StateNotifier<RegisterState> {
 
   final UserRegisterRepository registerRepository;
   final AccountRepository accountRepository;
-
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController rewritePasswordController =
+      TextEditingController();
   final TextEditingController streetAdressController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
   final TextEditingController streetNumberAdressController =
       TextEditingController();
   final TextEditingController ciController = TextEditingController();
@@ -37,18 +39,13 @@ class UserRegisterService extends StateNotifier<RegisterState> {
           await registerRepository.saveUserData(
             userId: user.uid,
             name: nameController.text,
+            lastName: lastNameController.text,
             adress:
                 '${streetAdressController.text} ${streetNumberAdressController.text}, ${cityAdressController.text}',
             phone: phoneController.text,
             email: emailController.text,
           );
-          await accountRepository.createAccount(
-            user.uid,
-            '1',
-            0.00,
-            'ars',
-          );
-
+          await accountRepository.createAccounts(user.uid);
           state = RegisterState(isLoading: false, isSuccess: true);
           log('Usuario creado exitosamente');
         } catch (e, stk) {
@@ -61,7 +58,6 @@ class UserRegisterService extends StateNotifier<RegisterState> {
           isError: true,
           errorMessage: 'Error al generar usuario, reintentar por favor.',
         );
-
         log('No se pudo registrrar el usuario. Error: $user');
         throw Exception('No se pudo registrrar el usuario. Error: $user');
       }
@@ -74,6 +70,28 @@ class UserRegisterService extends StateNotifier<RegisterState> {
       log('Error: $e. Trace: $stk');
       throw Exception('Error: $e. Trace: $stk');
     }
+  }
+
+  void clearControllers() {
+    emailController.clear();
+    passwordController.clear();
+    streetAdressController.clear();
+    nameController.clear();
+    streetNumberAdressController.clear();
+    ciController.clear();
+    cityAdressController.clear();
+    phoneController.clear();
+  }
+
+  void disposeControllers() {
+    emailController.dispose();
+    passwordController.dispose();
+    streetAdressController.dispose();
+    nameController.dispose();
+    streetNumberAdressController.dispose();
+    ciController.dispose();
+    cityAdressController.dispose();
+    phoneController.dispose();
   }
 }
 
@@ -88,7 +106,8 @@ final StateNotifierProvider<UserRegisterService, RegisterState>
       accountRepositoryProvider,
     );
     return UserRegisterService(
-        registerRepository: registerRepository,
-        accountRepository: accountRepository);
+      registerRepository: registerRepository,
+      accountRepository: accountRepository,
+    );
   },
 );

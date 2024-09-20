@@ -30,6 +30,7 @@ class UserRegisterRepository {
   Future<void> saveUserData({
     required String userId,
     required String name,
+    required String lastName,
     required String adress,
     required String phone,
     required String email,
@@ -40,9 +41,11 @@ class UserRegisterRepository {
 
       await usersCollection.doc(userId).set({
         'name': name,
+        'lastName': lastName,
         'email': email,
         'phone': phone,
         'adress': adress,
+        'kyc': false,
         'createdAt': FieldValue.serverTimestamp(),
       });
     } catch (e, trace) {

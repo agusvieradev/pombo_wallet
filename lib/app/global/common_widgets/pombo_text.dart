@@ -15,6 +15,7 @@ class PomboText {
   }) {
     return Text(
       text,
+      softWrap: true,
       style: TextStyle(
         letterSpacing: isSpaced ? 0.5 : 0,
         fontFamily: isPrimary ? _fontFamily : _secondaryFontFamily,
@@ -39,6 +40,7 @@ class PomboText {
   }) {
     return Text(
       text,
+      softWrap: true,
       style: TextStyle(
         letterSpacing: isSpaced ? 0.5 : 0,
         fontFamily: isPrimary ? _fontFamily : _secondaryFontFamily,
@@ -63,6 +65,7 @@ class PomboText {
   }) {
     return Text(
       text,
+      softWrap: true,
       style: TextStyle(
         letterSpacing: isSpaced ? 0.5 : 0,
         fontFamily: isPrimary ? _fontFamily : _secondaryFontFamily,
@@ -87,6 +90,7 @@ class PomboText {
   }) {
     return Text(
       text,
+      softWrap: true,
       style: TextStyle(
         letterSpacing: isSpaced ? 0.5 : 0,
         fontFamily: isPrimary ? _fontFamily : _secondaryFontFamily,

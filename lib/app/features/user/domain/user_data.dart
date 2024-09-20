@@ -1,7 +1,7 @@
 import 'package:pombo_wallet/app/features/account/domain/account.dart';
 
-class User {
-  const User({
+class UserData {
+  const UserData({
     required this.uid,
     required this.name,
     required this.account,
@@ -9,7 +9,7 @@ class User {
     required this.email,
     required this.phone,
   });
-  final int uid;
+  final String uid;
   final String name;
   final String address;
   final String email;

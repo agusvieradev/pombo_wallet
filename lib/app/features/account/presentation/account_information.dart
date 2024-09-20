@@ -16,15 +16,20 @@ class AccountInformation extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          PomboText().pomboMdText(
-            text: prepend,
+          Flexible(
+            child: PomboText().pomboMdText(
+              text: prepend,
+            ),
           ),
-          PomboText().pomboMdText(
-            text: append,
-            isBold: false,
-            isLight: true,
+          Flexible(
+            child: PomboText().pomboMdText(
+              text: append,
+              isBold: false,
+              isLight: true,
+            ),
           ),
         ],
       ),

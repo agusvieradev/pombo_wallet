@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pombo_wallet/app/global/routes/routes.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_icons.dart';
 import 'package:pombo_wallet/app/global/constants/pombo_colors.dart';
-import 'package:pombo_wallet/app/global/constants/pombo_white_spaces.dart';
 import 'package:pombo_wallet/app/features/user/presentation/user_register_form.dart';
 
 class UserRegisterScreen extends ConsumerWidget {
@@ -37,7 +36,6 @@ class UserRegisterScreen extends ConsumerWidget {
               ),
             ),
             const UserRegisterForm(),
-            PomboWhiteSpaces.hSpaceL
           ],
         ),
       ),

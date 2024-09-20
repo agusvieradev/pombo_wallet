@@ -4,9 +4,9 @@
 <head>
   <base href="$FLUTTER_BASE_HREF">
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="A new Flutter project.">
-
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -16,7 +16,7 @@
   <meta name="google-signin-client_id"
     content="676753289149-676u5rkttgidm3jtlmdruo784i1048sj.apps.googleusercontent.com">
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="icon" type="image/png"  href="../assets/pombo_logo_og.svg" />
 
   <title>pombo_wallet</title>
   <link rel="manifest" href="manifest.json">
@@ -44,6 +44,7 @@
       });
     });
   </script>
+  <script src="https://static.sumsub.com/idensic/static/sumsub-kyc.js"></script>
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
@@ -61,7 +62,34 @@
   </script>
   <script src="https://apis.google.com/js/api.js"></script>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script type="text/javascript">
+    function initSumsub(accessToken) {
+      const idensic = SumSub.openIdensic({
+        accessToken: accessToken,
+        onMessage: (type, payload) => {
+          console.log('Sumsub Message:', type, payload);
+        },
+        onError: (error) => {
+          console.log('Sumsub Error:', error);
+        },
+        onClose: () => {
+          console.log('Sumsub Widget closed');
+        }
+      });
 
+      idensic.on('loaded', function () {
+        console.log('Sumsub Widget loaded');
+      });
+
+      idensic.on('completed', function () {
+        console.log('KYC completed successfully');
+      });
+
+      idensic.on('error', function (error) {
+        console.log('Error during KYC', error);
+      });
+    }
+  </script>
 </body>
 
 </html>

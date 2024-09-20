@@ -52,14 +52,14 @@ class PomboSideBar extends ConsumerWidget {
                     context.goNamed(AppRoute.account.name);
                   },
                 ),
-                PomboSidebarItem(
-                  title: 'Soporte',
-                  icon: PomboIcons.support,
-                  isActive: currentPath == '/${AppRoute.support.name}',
-                  action: () {
-                    context.goNamed(AppRoute.support.name);
-                  },
-                ),
+                // PomboSidebarItem(
+                //   title: 'Soporte',
+                //   icon: PomboIcons.support,
+                //   isActive: currentPath == '/${AppRoute.support.name}',
+                //   action: () {
+                //     context.goNamed(AppRoute.support.name);
+                //   },
+                // ),
               ],
             ),
             Container(

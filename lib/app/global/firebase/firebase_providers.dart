@@ -35,7 +35,7 @@ final StreamProvider firestoreUserLoggedProvider = StreamProvider(
     final UserState user = ref.watch(authServiceProvider);
     return FirebaseFirestore.instance
         .collection('users')
-        .doc(user.user!.uid)
+        .doc(user.user!.uid)//! verififcar id con UserData
         .snapshots();
   },
 );

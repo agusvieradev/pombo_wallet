@@ -11,10 +11,9 @@ import 'package:pombo_wallet/app/features/authentication/presentation/auth_scree
 
 enum AppRoute { home, login, account, support, register }
 
-final goRouterProvider = Provider<GoRouter>(
+final Provider<GoRouter> goRouterProvider = Provider<GoRouter>(
   (ref) {
     final AsyncValue<User?> authState = ref.watch(firebeaseUserStateProvider);
-
     return GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: false,
